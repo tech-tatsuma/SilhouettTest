@@ -6,3 +6,8 @@
 ```
 python train.py
 ```
+## 検証可能なネットワーク
+- MLP-Mixer
+- Vision Transformer
+- Resnet 50
+- CrossViT

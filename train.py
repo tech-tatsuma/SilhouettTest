@@ -20,7 +20,10 @@ import time
 
 from models.mlpmixer import MLPMixer
 from models.resnet50 import CustomResNet50
+from models.vit import VisionTransformer
 from datasets.dataset import SilhouetteImageDataset
+
+from models.crossvit import VisionTransformer as crossvit
 
 # シードの設定を行う関数
 def seed_everything(seed):
@@ -84,6 +87,19 @@ def train(opt, trial=None):
         model = MLPMixer()
     elif opt.modelname == "ResNet50":
         model = CustomResNet50(num_classes=num_classes)
+    elif opt.modelname == "VisionTransformer":
+        model = VisionTransformer(
+            image_size=128,
+            patch_size=16,
+            in_channels=1,
+            embedding_dim=768,
+            num_layers=12,
+            num_heads=12,
+            mlp_ratio=4.0,
+            num_classes=4,
+            hidden_dims=[64, 128, 256])
+    elif opt.modelname == "crossvit":
+        model = crossvit()
 
     # モデルの並列化
     if torch.cuda.device_count() > 1:
@@ -170,8 +186,8 @@ def train(opt, trial=None):
 
         # バリデーションロスが下がった時は結果を保存する
         if val_loss_min is None or val_loss < val_loss_min:
-            model_save_directory = './mlpmixer'
-            model_save_name = f'./mlpmixer/lr{learning_rate}_ep{epochs}_pa{patience}intweak.pt'
+            model_save_directory = './crossvit'
+            model_save_name = f'./crossvit/lr{learning_rate}_ep{epochs}_pa{patience}intweak.pt'
             if not os.path.exists(model_save_directory):
                 os.makedirs(model_save_directory)
             torch.save(model.state_dict(), model_save_name)
@@ -194,7 +210,7 @@ def train(opt, trial=None):
     plt.legend()
     
     plt.title("Training and Validation Loss")
-    graph_save_directory = './mlpmixer'
+    graph_save_directory = './crossvit'
     graph_save_name = f'{graph_save_directory}/lr{learning_rate}_ep{epochs}_pa{patience}intweak.png'
 
     if not os.path.exists(graph_save_directory):
@@ -214,13 +230,13 @@ def objective(trial):
         islearnrate_search=True,
         seed=42,
         batch_size=20,
-        modelname='MLP-Mixer'
+        modelname='crossvit'
     )
     return train(args, trial)
 
 if __name__ == '__main__':
     # プロセス名の設定
-    setproctitle("mlpmixer")
+    setproctitle("crossvit")
 
     # オプションを標準出力する
     print('-----biginning training-----')
