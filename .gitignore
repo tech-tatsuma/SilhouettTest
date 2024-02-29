@@ -1,0 +1,6 @@
+__pycache__
+*.jpg
+*.png
+*.pt
+.DS_Store
+venv

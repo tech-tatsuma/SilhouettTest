@@ -1,0 +1,50 @@
+[I 2024-02-29 09:55:57,816] A new study created in memory with name: no-name-f3abeb87-1cae-4e19-8039-1463307a2b0b
+/home/furuya/mlp-mixer/venv/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/furuya/mlp-mixer/venv/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+-----biginning training-----
+Namespace(epochs=100, learning_rate=0.08603112222541545, weight_decay=0.0035612363200033235, patience=20, islearnrate_search=True, seed=42, batch_size=20, modelname='ResNet50')
+  0%|          | 0/100 [00:00<?, ?it/s]Epoch 1, Training loss: 2.5753, Validation loss: 2.1078, Validation Accuracy: 0.3708
+  1%|          | 1/100 [00:12<20:53, 12.66s/it]Epoch 2, Training loss: 0.6155, Validation loss: 0.3739, Validation Accuracy: 0.8729
+  2%|▏         | 2/100 [00:25<20:33, 12.59s/it]Epoch 3, Training loss: 0.4910, Validation loss: 0.3200, Validation Accuracy: 0.8927
+  3%|▎         | 3/100 [00:37<20:22, 12.60s/it]Epoch 4, Training loss: 0.3770, Validation loss: 0.3590, Validation Accuracy: 0.8708
+  4%|▍         | 4/100 [00:50<20:10, 12.61s/it]Epoch 5, Training loss: 0.2776, Validation loss: 0.3352, Validation Accuracy: 0.8906
+  5%|▌         | 5/100 [01:03<20:00, 12.63s/it]Epoch 6, Training loss: 0.2551, Validation loss: 0.3827, Validation Accuracy: 0.8812
+  6%|▌         | 6/100 [01:15<19:35, 12.51s/it]Epoch 7, Training loss: 0.2643, Validation loss: 0.2382, Validation Accuracy: 0.9229
+  7%|▋         | 7/100 [01:28<19:32, 12.61s/it]Epoch 8, Training loss: 0.2058, Validation loss: 0.3495, Validation Accuracy: 0.8990
+  8%|▊         | 8/100 [01:40<19:03, 12.43s/it]Epoch 9, Training loss: 0.1536, Validation loss: 0.3150, Validation Accuracy: 0.9146
+  9%|▉         | 9/100 [01:51<18:15, 12.04s/it]Epoch 10, Training loss: 0.1146, Validation loss: 0.3521, Validation Accuracy: 0.9115
+ 10%|█         | 10/100 [02:02<17:38, 11.76s/it]Epoch 11, Training loss: 0.2784, Validation loss: 0.2816, Validation Accuracy: 0.9156
+ 11%|█         | 11/100 [02:13<17:12, 11.60s/it]Epoch 12, Training loss: 0.1460, Validation loss: 0.3572, Validation Accuracy: 0.9073
+ 12%|█▏        | 12/100 [02:25<16:50, 11.48s/it]Epoch 13, Training loss: 0.0924, Validation loss: 0.3360, Validation Accuracy: 0.9010
+ 13%|█▎        | 13/100 [02:36<16:34, 11.43s/it]Epoch 14, Training loss: 0.0776, Validation loss: 0.3095, Validation Accuracy: 0.9198
+ 14%|█▍        | 14/100 [02:47<16:21, 11.41s/it]Epoch 15, Training loss: 0.0551, Validation loss: 0.3789, Validation Accuracy: 0.9167
+ 15%|█▌        | 15/100 [02:59<16:07, 11.39s/it]Epoch 16, Training loss: 0.0540, Validation loss: 0.4165, Validation Accuracy: 0.9062
+ 16%|█▌        | 16/100 [03:10<15:52, 11.33s/it]Epoch 17, Training loss: 0.0333, Validation loss: 0.3784, Validation Accuracy: 0.9250
+ 17%|█▋        | 17/100 [03:21<15:44, 11.38s/it]Epoch 18, Training loss: 0.0602, Validation loss: 0.3872, Validation Accuracy: 0.9073
+ 18%|█▊        | 18/100 [03:33<15:36, 11.42s/it]Epoch 19, Training loss: 0.0247, Validation loss: 0.3854, Validation Accuracy: 0.9219
+ 19%|█▉        | 19/100 [03:44<15:24, 11.41s/it]Epoch 20, Training loss: 0.0180, Validation loss: 0.4182, Validation Accuracy: 0.9229
+ 20%|██        | 20/100 [03:55<15:06, 11.33s/it]Epoch 21, Training loss: 0.0272, Validation loss: 0.3884, Validation Accuracy: 0.9198
+ 21%|██        | 21/100 [04:06<14:51, 11.29s/it]Epoch 22, Training loss: 0.0359, Validation loss: 0.3492, Validation Accuracy: 0.9302
+ 22%|██▏       | 22/100 [04:18<14:43, 11.32s/it]Epoch 23, Training loss: 0.0235, Validation loss: 0.4272, Validation Accuracy: 0.9083
+ 23%|██▎       | 23/100 [04:29<14:29, 11.29s/it]Epoch 24, Training loss: 0.0147, Validation loss: 0.4277, Validation Accuracy: 0.9229
+ 24%|██▍       | 24/100 [04:40<14:20, 11.32s/it]Epoch 25, Training loss: 0.0261, Validation loss: 0.4431, Validation Accuracy: 0.9250
+ 25%|██▌       | 25/100 [04:53<14:27, 11.57s/it]Epoch 26, Training loss: 0.0066, Validation loss: 0.4145, Validation Accuracy: 0.9271
+ 26%|██▌       | 26/100 [05:05<14:28, 11.74s/it]Epoch 27, Training loss: 0.0198, Validation loss: 0.4344, Validation Accuracy: 0.9115
+ 26%|██▌       | 26/100 [05:17<15:03, 12.21s/it]
+[I 2024-02-29 10:01:23,013] Trial 0 finished with value: 0.23816964592939863 and parameters: {'learning_rate': 0.08603112222541545, 'weight_decay': 0.0035612363200033235}. Best is trial 0 with value: 0.23816964592939863.
+Early stopping due to validation loss not improving for 20 epochs
+Namespace(epochs=100, learning_rate=2.9675266407245595e-05, weight_decay=2.7268138179742785e-05, patience=20, islearnrate_search=True, seed=42, batch_size=20, modelname='ResNet50')
+  0%|          | 0/100 [00:00<?, ?it/s]Epoch 1, Training loss: 1.4398, Validation loss: 1.3852, Validation Accuracy: 0.2677
+  1%|          | 1/100 [00:11<19:17, 11.69s/it]Epoch 2, Training loss: 1.3818, Validation loss: 1.3872, Validation Accuracy: 0.2740
+  2%|▏         | 2/100 [00:23<18:48, 11.52s/it]Epoch 3, Training loss: 1.3851, Validation loss: 1.3762, Validation Accuracy: 0.2854
+  3%|▎         | 3/100 [00:34<18:42, 11.57s/it]Epoch 4, Training loss: 1.3692, Validation loss: 1.3644, Validation Accuracy: 0.2979
+  4%|▍         | 4/100 [00:46<18:32, 11.58s/it]Epoch 5, Training loss: 1.3577, Validation loss: 1.3575, Validation Accuracy: 0.3250
+  5%|▌         | 5/100 [00:58<18:27, 11.66s/it]Epoch 6, Training loss: 1.3354, Validation loss: 1.3361, Validation Accuracy: 0.3635
+  6%|▌         | 6/100 [01:09<18:14, 11.64s/it]Epoch 7, Training loss: 1.3172, Validation loss: 1.2982, Validation Accuracy: 0.3948
+  7%|▋         | 7/100 [01:22<18:35, 11.99s/it]Epoch 8, Training loss: 1.2920, Validation loss: 1.2820, Validation Accuracy: 0.4021
+  8%|▊         | 8/100 [01:35<18:45, 12.24s/it]Epoch 9, Training loss: 1.2762, Validation loss: 1.2560, Validation Accuracy: 0.4344
+  9%|▉         | 9/100 [01:46<18:11, 12.00s/it]Epoch 10, Training loss: 1.2571, Validation loss: 1.2402, Validation Accuracy: 0.4469
+ 10%|█         | 10/100 [01:58<17:49, 11.88s/it]Epoch 11, Training loss: 1.2278, Validation loss: 1.1855, Validation Accuracy: 0.4938
+ 11%|█         | 11/100 [02:09<17:32, 11.82s/it]
