@@ -11,3 +11,15 @@ python train.py
 - Vision Transformer
 - Resnet 50
 - CrossViT
+
+## 推論プロセスの可視化
+- gradcam
+```
+python -m utils.gradcam --image ./archive/lying/1.jpg --model ./resnet50/best.pt --output_path ./output_lying.jpg
+```
+上記のようなコマンドを実行し，推論プロセスの可視化を行います．ただし，このスクリプトはresnet50モデルにした適用できません．
+### GradCamの結果
+![bending](images/output_bending.png)
+![lying](images/output_lying.png)
+![sitting](images/output_sitting.png)
+![standing](images/output_standing.png)

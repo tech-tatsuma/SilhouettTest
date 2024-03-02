@@ -3,10 +3,14 @@ import numpy as np
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 from torchvision.transforms import functional as TF
-from ..models.resnet50 import CustomResNet50
+import torchvision.transforms as transforms
+from torch.utils.data import DataLoader
+from models.resnet50 import CustomResNet50
 from torchvision import transforms
 from PIL import Image
 import argparse
+
+from datasets.dataset import SilhouetteImageDataset
 
 # Grad-CAMを生成するためのクラス定義
 class GradCAM:
@@ -20,7 +24,7 @@ class GradCAM:
         target_layer.register_forward_hook(self.save_forward_output) # forward時の出力を保存
         target_layer.register_full_backward_hook(self.save_gradients) # 勾配を保存
 
-    # forward時のちゅつりょくを保存するためのメソッド
+    # forward時の出力を保存するためのメソッド
     def save_forward_output(self, module, input, output):
         self.forward_output = output
 
@@ -52,19 +56,32 @@ class GradCAM:
         return cam
 
 # CAM画像と元画像を重ねて可視化する関数
-def visualize_cam(cam_image, input_image):
+def visualize_cam(cam_image, input_image, save_path=None):
     cam_image = cam_image.cpu().squeeze().numpy() # CAMをnumpy配列に変換
     input_image = TF.to_pil_image(input_image.cpu().squeeze()) # 入力画像をPIL形式に変換
     plt.imshow(input_image, alpha=0.5) 
     plt.imshow(cam_image, cmap='jet', alpha=0.5)
     plt.axis('off')
-    plt.show()
+    if save_path is not None:
+        plt.savefig(save_path)
 
 if __name__ == "__main__":
     argparser = argparse.ArgumentParser()
     argparser.add_argument("--image", type=str, required=True)
     argparser.add_argument("--model", type=str, required=True)
+    argparser.add_argument("--output_path", type=str, required=True)
     args = argparser.parse_args()
+
+    temp_transform = transforms.Compose([transforms.Resize((128, 128)), transforms.ToTensor()])
+    all_dataset = SilhouetteImageDataset(directory='archive', transform=temp_transform)
+
+    # データローダの取得
+    temp_loader = DataLoader(all_dataset, batch_size=len(all_dataset), shuffle=False)
+
+    # データセットから平均と標準偏差を計算
+    data = next(iter(temp_loader))[0]
+    mean = data.mean([0, 2, 3])
+    std = data.std([0, 2, 3])
 
     # モデルと対象層を指定
     model = CustomResNet50(num_classes=4)
@@ -77,13 +94,15 @@ if __name__ == "__main__":
 
     # 画像の読み込みと前処理
     def preprocess_image(image_path, size=(128, 128)):
+        image = Image.open(image_path).convert('RGB')
+        # 画像が3チャンネルのRGB画像であればグレースケールに変換
+        if image.mode == 'RGB':
+            image = image.convert('L')  # RGBをグレースケールに変換
         transform = transforms.Compose([
             transforms.Resize(size),
-            transforms.Grayscale(num_output_channels=1),  # 3チャンネルを1チャンネルに変換
             transforms.ToTensor(),
-            transforms.Normalize(mean=[0.485], std=[0.229]),  # 1チャンネル用の平均値と標準偏差に調整
+            transforms.Normalize(mean=[mean], std=[std]),  # 1チャンネル用の平均値と標準偏差に調整
         ])
-        image = Image.open(image_path).convert('RGB')  # 入力をRGBに統一
         image = transform(image).unsqueeze(0)  # バッチ次元を追加
         return image
 
@@ -97,4 +116,4 @@ if __name__ == "__main__":
     cam = grad_cam.generate_cam(input_image)
 
     # CAMの可視化
-    visualize_cam(cam, input_image)
+    visualize_cam(cam, input_image, save_path=args.output_path)
