@@ -19,7 +19,7 @@ python -m utils.gradcam --image ./archive/lying/1.jpg --model ./resnet50/best.pt
 ```
 上記のようなコマンドを実行し，推論プロセスの可視化を行います．ただし，このスクリプトはresnet50モデルにした適用できません．
 ### GradCamの結果
-![bending](images/output_bending.png)
-![lying](images/output_lying.png)
-![sitting](images/output_sitting.png)
-![standing](images/output_standing.png)
+![bending](images/output_bending.jpeg)
+![lying](images/output_lying.jpeg)
+![sitting](images/output_sitting.jpeg)
+![standing](images/output_standing.jpeg)
